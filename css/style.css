@@ -39,7 +39,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand-text strong{display:block;line-height:1.1;font-size:1.1rem}
+.brand-text strong{display:block;line-height:1.1;font-size:1.22rem;font-weight:800;letter-spacing:.01em}
 .brand-text small{color:var(--muted)}
 .main-nav{display:flex;gap:18px}
 .main-nav a{text-decoration:none;color:var(--ink);font-weight:600}
