@@ -28,6 +28,7 @@ lakeside-outdoors-services/
 - `images/hero-lawn.jpg` (525KB) — Daniel Watson — hero background
 - `images/work-after.jpg` (303KB) — Andres Siimon — Before/After slider (both sides; "before" side uses a CSS sepia/dull filter as a demo effect)
 - `images/crew-mowing.jpg` (1200×800, 240KB) — Carl Tronders — About section
+- `images/bg-*.jpg` (4 files, 1200×800) — hero slideshow scenes (treatment/aeration/cleanup/hedge), color-graded (saturation + contrast + warm daylight).
 - `images/equip-*.jpg` (8 files, 1000–1280px wide) — equipment cards: zero-turn + stand-on + walk-behind + trimmer + blower + hedge (Unsplash, free license); aerator + overseeder + walk-behind + trimmer + blower + stand-on action shots (Wikimedia Commons contributors, CC BY-SA — keep attribution if you keep these files; swapping in your own machine photos is recommended).
 - Replace with your OWN photos anytime: keep filenames (or update `index.html` + `.ba-before/.ba-after` in `css/style.css`). Keep each <500KB, add `width`/`height` + `loading="lazy"` on every `<img>`.
 
