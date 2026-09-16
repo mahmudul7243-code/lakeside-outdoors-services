@@ -116,7 +116,7 @@ h2{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.2;margin:0 0 12px;text-wrap:
 .equip-n{display:inline-flex;width:44px;height:44px;border-radius:12px;background:var(--green-900);color:var(--lime);font-weight:900;align-items:center;justify-content:center;font-size:1rem;margin-bottom:10px}
 .equip-grid h3{margin:0 0 6px;font-size:1.02rem}
 .equip-grid p{margin:0;color:var(--muted);font-size:.93rem}
-.equip-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;margin-bottom:12px;background:#e5eee6}
+.equip-img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px;margin-bottom:12px;background:#e5eee6}
 
 /* Split */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
