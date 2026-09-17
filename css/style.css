@@ -109,6 +109,21 @@ h2{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.2;margin:0 0 12px;text-wrap:
 .price{color:var(--green-700)!important;font-weight:800}
 .card-link{margin-top:auto;font-weight:800;text-decoration:none}
 
+/* Service image cards */
+.svc-card{position:relative;overflow:hidden;min-height:380px;color:#fff;border-color:rgba(255,255,255,.16);transition:transform .45s ease-out,box-shadow .45s ease-out}
+.svc-card::before{content:"";position:absolute;inset:0;background-image:var(--svc-bg);background-size:cover;background-position:center;transition:transform .45s ease-out}
+.svc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,36,23,.16) 0%,rgba(11,36,23,.5) 45%,rgba(11,36,23,.9) 100%);opacity:.94;transition:opacity .45s ease-out}
+.svc-card>*{position:relative;z-index:1}
+.svc-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,36,23,.3)}
+.svc-card:hover::before{transform:scale(1.06)}
+.svc-card:hover::after{opacity:1}
+.svc-card .icon{display:inline-flex;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:6px 10px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.svc-card h3{color:#fff}
+.svc-card p{color:rgba(255,255,255,.88)}
+.svc-card .price{color:var(--lime)!important}
+.svc-card .card-link{color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.5)}
+.svc-card .card-link:hover{color:var(--lime);text-decoration-color:var(--lime)}
+
 /* Equipment */
 .equip-grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0;margin:26px 0 0}
 .equip-grid li{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
@@ -226,4 +241,4 @@ h2{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.2;margin:0 0 12px;text-wrap:
   body{padding-bottom:72px}
   .header-cta .btn-primary{padding:10px 14px;font-size:.9rem}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}.svc-card:hover{transform:none}.svc-card:hover::before{transform:none}}
