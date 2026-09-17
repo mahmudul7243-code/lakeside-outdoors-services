@@ -29,6 +29,7 @@ lakeside-outdoors-services/
 - `images/work-after.jpg` (303KB) — Andres Siimon — Before/After slider (both sides; "before" side uses a CSS sepia/dull filter as a demo effect)
 - `images/crew-mowing.jpg` (1200×800, 240KB) — Carl Tronders — About section
 - `images/bg-*.jpg` (4 files, 1200×800) — hero slideshow scenes (treatment/aeration/cleanup/hedge), color-graded (saturation + contrast + warm daylight).
+- `images/svc-mowing.jpg` (1280×848) — Pixabay free photo (zero-turn + house): mowing card #1.
 - `images/svc-fertilization.jpg` (1000×667) — Dibakar Roy (Unsplash): worker spraying a green field, service card #2.
 - `images/bg-hedge.jpg` (1200×800) — Pexels free photo: worker shaping a hedge with a trimmer (card #6 + hero scene 6).
 - Service cards reuse the above files as full-card backgrounds (zero extra downloads — browser cache).
