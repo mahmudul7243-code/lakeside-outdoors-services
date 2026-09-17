@@ -120,9 +120,9 @@ h2{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.2;margin:0 0 12px;text-wrap:
 .svc-card .icon{display:inline-flex;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:6px 10px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .svc-card h3{color:#fff}
 .svc-card p{color:rgba(255,255,255,.88)}
-.svc-card .price{color:var(--lime)!important}
-.svc-card .card-link{color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.5)}
-.svc-card .card-link:hover{color:var(--lime);text-decoration-color:var(--lime)}
+.svc-card .price-pill{display:inline-flex;align-items:center;gap:8px;background:var(--green-600);color:#fff;font-weight:800;padding:10px 20px;border-radius:999px;text-decoration:none;margin-top:auto;align-self:flex-start;transition:background-color .3s ease-out,transform .3s ease-out}
+.svc-card .price-pill:hover{background:var(--green-700);transform:translateX(4px)}
+.svc-card .price-pill:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
 
 /* Equipment */
 .equip-grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0;margin:26px 0 0}
