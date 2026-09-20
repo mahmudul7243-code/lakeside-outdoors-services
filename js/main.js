@@ -48,6 +48,8 @@
       // Compact header + subtle hero parallax
       var sy = window.scrollY;
       if (header) header.classList.toggle('scrolled', sy > 24);
+      var cue = document.querySelector('.scroll-cue');
+      if (cue) cue.classList.toggle('hide', sy > 80);
       if (!REDUCED) {
         var hero = document.querySelector('.hero');
         if (hero && sy < hero.offsetHeight) {
@@ -264,5 +266,27 @@
       }
       requestAnimationFrame(loop);
     })();
+  })();
+
+  // Hero tilt: barely-there cursor parallax (±4px max, fine pointers only)
+  (function(){
+    if (REDUCED || !window.matchMedia('(pointer: fine)').matches) return;
+    var heroEl = document.querySelector('.hero');
+    var grid = document.querySelector('.hero-grid');
+    if (!heroEl || !grid) return;
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+    function apply(){
+      raf = 0;
+      cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
+      grid.style.transform = 'translate3d(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px,0)';
+      if (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05) raf = requestAnimationFrame(apply);
+    }
+    heroEl.addEventListener('mousemove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 8;
+      if (!raf) raf = requestAnimationFrame(apply);
+    }, {passive: true});
+    heroEl.addEventListener('mouseleave', function(){ tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
   })();
 })();
