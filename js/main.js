@@ -233,4 +233,36 @@
     document.getElementById('lbClose').addEventListener('click', function(){ dlg.close(); });
     dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
   })();
+
+  // Muse pointer: ambient glow + trailing ring + sparkles (fine pointers only)
+  (function(){
+    if (REDUCED || !window.matchMedia('(pointer: fine)').matches) return;
+    var glow = document.createElement('div'); glow.className = 'muse-glow'; glow.setAttribute('aria-hidden', 'true');
+    var ring = document.createElement('div'); ring.className = 'muse-ring'; ring.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(glow); document.body.appendChild(ring);
+    var mx = 0, my = 0, rx = 0, ry = 0, shown = false, lastSpark = 0;
+    function spark(x, y){
+      var s = document.createElement('div'); s.className = 'muse-spark'; s.setAttribute('aria-hidden', 'true');
+      s.style.left = x + 'px'; s.style.top = y + 'px';
+      document.body.appendChild(s);
+      setTimeout(function(){ s.remove(); }, 850);
+    }
+    document.addEventListener('mousemove', function(e){
+      mx = e.clientX; my = e.clientY;
+      if (!shown) { shown = true; rx = mx; ry = my; glow.style.opacity = '1'; ring.style.opacity = '1'; }
+      glow.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+      var t = e.target;
+      ring.classList.toggle('hot', !!(t && t.closest && t.closest('a,button,.gal-open,input,select,textarea,summary')));
+      var now = performance.now();
+      if (now - lastSpark > 90) { lastSpark = now; spark(mx, my); }
+    }, {passive: true});
+    document.addEventListener('mouseleave', function(){ shown = false; glow.style.opacity = '0'; ring.style.opacity = '0'; });
+    (function loop(){
+      if (shown) {
+        rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      }
+      requestAnimationFrame(loop);
+    })();
+  })();
 })();

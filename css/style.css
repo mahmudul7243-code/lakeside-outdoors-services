@@ -288,4 +288,12 @@ html,body{overflow-x:clip}
   body{padding-bottom:72px}
   .header-cta .btn-primary{padding:10px 14px;font-size:.9rem}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}.hero-dust{display:none}.svc-card:hover{transform:none}.svc-card:hover::before{transform:none}.reveal{opacity:1!important;transform:none!important}}
+/* Muse pointer glow (decorative follower; native cursor stays) */
+.muse-glow{position:fixed;top:0;left:0;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;pointer-events:none;z-index:65;background:radial-gradient(circle,rgba(190,242,100,.2),rgba(22,163,74,.08) 45%,transparent 70%);opacity:0;transition:opacity .4s ease-out}
+.muse-ring{position:fixed;top:0;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid rgba(22,163,74,.55);pointer-events:none;z-index:65;opacity:0;transition:opacity .3s ease-out,border-color .25s ease-out}
+.muse-ring.hot{border-color:rgba(190,242,100,.95)}
+.muse-spark{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--lime);pointer-events:none;z-index:65;animation:sparkFloat .8s ease-out forwards}
+@keyframes sparkFloat{from{opacity:.9;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-90px) scale(.2)}}
+@media(pointer:coarse){.muse-glow,.muse-ring{display:none}}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}.hero-dust{display:none}.svc-card:hover{transform:none}.svc-card:hover::before{transform:none}.reveal{opacity:1!important;transform:none!important}.muse-glow,.muse-ring,.muse-spark{display:none!important}}
