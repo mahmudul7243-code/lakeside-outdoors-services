@@ -10,6 +10,7 @@
   var nav = document.getElementById('mainNav');
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Reduced motion: never autoplay the hero video (static poster instead)
   var hv = document.querySelector('.hero-video');
@@ -44,6 +45,16 @@
       var y = window.scrollY + 120, current = null;
       sections.forEach(function(s, i){ if (tops[i] <= y) current = '#' + s.id; });
       links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === current); });
+      // Compact header + subtle hero parallax
+      var sy = window.scrollY;
+      if (header) header.classList.toggle('scrolled', sy > 24);
+      if (!REDUCED) {
+        var hero = document.querySelector('.hero');
+        if (hero && sy < hero.offsetHeight) {
+          var sh = document.querySelector('.hero-slideshow');
+          if (sh) sh.style.transform = 'translateY(' + (sy * 0.18) + 'px)';
+        }
+      }
       ticking = false;
     });
   }
@@ -114,6 +125,7 @@
       if (data.get('email')) payload.email = data.get('email').toString().trim();
       if (data.get('zip')) payload.zip = data.get('zip').toString().trim();
       if (data.get('message')) payload.message = data.get('message').toString().trim();
+      if (data.get('contactMethod')) payload.contactMethod = data.get('contactMethod').toString();
       payload._subject = 'Free Quote Request — ' + name + ' (' + payload.service + ')';
 
       function done(ok, text){
@@ -125,6 +137,7 @@
           (payload.email ? 'Email: '+payload.email+'\n':'') +
           (payload.zip ? 'ZIP: '+payload.zip+'\n':'') +
           (payload.message ? 'Details: '+payload.message+'\n':'') +
+          (payload.contactMethod ? 'Contact via: '+payload.contactMethod+'\n':'') +
           '\nSent from lakesideoutdoorswatertown.com');
         window.location.href = 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(payload._subject)+'&body='+body;
       }
@@ -157,4 +170,67 @@
   }
   handleForm('heroQuoteForm','heroFormMsg');
   handleForm('quoteForm','mainFormMsg');
+
+  // Scroll reveal: JS only adds classes, so no-JS stays fully visible
+  (function(){
+    if (REDUCED || !('IntersectionObserver' in window)) return;
+    var targets = document.querySelectorAll('.services-grid > *, .steps > *, .plans > *, .reviews-grid > *, .equip-grid > *, .ba-stats > *, .gal-grid > *');
+    targets.forEach(function(el){
+      el.classList.add('reveal');
+      var sibs = el.parentElement ? el.parentElement.children : [];
+      var idx = Array.prototype.indexOf.call(sibs, el);
+      if (sibs.length > 1) el.style.transitionDelay = ((idx % 4) * 70) + 'ms';
+    });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold: 0.12});
+    targets.forEach(function(el){ io.observe(el); });
+  })();
+
+  // Animated trust counters (existing claims only, no invented stats)
+  (function(){
+    var nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    function run(el){
+      var target = parseFloat(el.getAttribute('data-count'));
+      var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      if (REDUCED || !('requestAnimationFrame' in window)) { el.textContent = target.toFixed(dec); return; }
+      var t0 = null;
+      function step(t){
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / 1200);
+        el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+        if (p < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    }
+    if (!('IntersectionObserver' in window)) { nums.forEach(run); return; }
+    var io2 = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) { run(en.target); io2.unobserve(en.target); } });
+    }, {threshold: 0.4});
+    nums.forEach(function(el){ io2.observe(el); });
+  })();
+
+  // Gallery lightbox
+  (function(){
+    var dlg = document.getElementById('lightbox');
+    if (!dlg || !dlg.showModal) return;
+    var img = document.getElementById('lbImg');
+    var cap = document.getElementById('lbCap');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gal-open'));
+    var idx = 0;
+    function show(i){
+      idx = (i + items.length) % items.length;
+      img.src = items[idx].getAttribute('data-full');
+      var thumb = items[idx].querySelector('img');
+      img.alt = thumb ? thumb.alt : 'Enlarged gallery photo';
+      cap.textContent = items[idx].getAttribute('data-cap') || '';
+      if (!dlg.open) dlg.showModal();
+    }
+    items.forEach(function(b, i){ b.addEventListener('click', function(){ show(i); }); });
+    document.getElementById('lbPrev').addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lbNext').addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
+    document.getElementById('lbClose').addEventListener('click', function(){ dlg.close(); });
+    dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
+  })();
 })();

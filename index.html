@@ -105,11 +105,12 @@
         </span>
       </a>
       <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
+        <a href="#top">Home</a>
         <a href="#services">Services</a>
         <a href="#equipment">Equipment</a>
-        <a href="#why-us">Why Us</a>
+        <a href="#why-us">About</a>
         <a href="#areas">Service Area</a>
-        <a href="#work">Results</a>
+        <a href="#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
@@ -131,6 +132,7 @@
     <!-- HERO -->
     <section class="hero" id="top" aria-label="Lawn care Watertown NY hero">
       <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-dust" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <!-- Cinematic service scenes: 6 slow cross-dissolves, 18s seamless loop. Decorative only. -->
       <div class="hero-slideshow" aria-hidden="true">
         <div class="hero-slide" style="background-image:url('images/hero-lawn.jpg');animation-delay:0s"></div>
@@ -197,8 +199,8 @@
     <!-- TRUST BAR -->
     <section class="trustbar" aria-label="Company highlights">
       <div class="container trustbar-grid">
-        <div><strong>500+</strong><span>Lawns maintained</span></div>
-        <div><strong>4.9★</strong><span>Average rating</span></div>
+        <div><strong><span data-count="500">500</span>+</strong><span>Lawns maintained</span></div>
+        <div><strong><span data-count="4.9" data-dec="1">4.9</span>★</strong><span>Average rating</span></div>
         <div><strong>Same-week</strong><span>Start available</span></div>
         <div><strong>Local</strong><span>Watertown-based crew</span></div>
       </div>
@@ -297,6 +299,7 @@
         </div>
         <!-- Sample crew photo (Unsplash: Carl Tronders). Replace src with your own crew photo. -->
         <figure class="about-figure">
+          <span class="about-badge">📍 Serving Watertown, NY</span>
           <img src="images/crew-mowing.jpg" alt="Lakeside Outdoors crew member mowing a lush green lawn in Watertown, NY" width="250" height="250" loading="lazy" />
           <figcaption class="photo-badges"><span>✔ Insured</span><span>✔ Uniformed Crew</span><span>✔ Pro Equipment</span></figcaption>
         </figure>
@@ -354,6 +357,34 @@
             <div><strong>Patchy → Full</strong><span>Sackets Harbor • Aeration + overseed</span></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <p class="eyebrow center">Gallery</p>
+        <h2 id="gallery-title" class="center">Recent Work Around Watertown</h2>
+        <p class="section-sub center">Tap any photo to view it larger.</p>
+        <div class="gal-grid">
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/svc-mowing.jpg" data-cap="Weekly mowing with crisp stripes"><img src="images/svc-mowing.jpg" alt="Zero-turn mower cutting stripes in front of a Watertown home" loading="lazy" /></button><figcaption>Striped mowing finish</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/crew-mowing.jpg" data-cap="Uniformed local crew at work"><img src="images/crew-mowing.jpg" alt="Lakeside Outdoors crew member mowing a green lawn" loading="lazy" /></button><figcaption>Local crew at work</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/work-after.jpg" data-cap="Healthy, thick summer turf"><img src="images/work-after.jpg" alt="Thick healthy green lawn after maintenance" loading="lazy" /></button><figcaption>Thick healthy turf</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/scene-mulch.jpg" data-cap="Fresh mulch beds with clean edges"><img src="images/scene-mulch.jpg" alt="Garden beds with fresh mulch" loading="lazy" /></button><figcaption>Fresh mulch beds</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/equip-blower.jpg" data-cap="Fall leaf cleanup in progress"><img src="images/equip-blower.jpg" alt="Crew clearing autumn leaves with a blower" loading="lazy" /></button><figcaption>Leaf cleanup</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/equip-hedge.jpg" data-cap="Precision hedge shaping"><img src="images/equip-hedge.jpg" alt="Worker shaping a hedge with a trimmer" loading="lazy" /></button><figcaption>Hedge shaping</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/equip-zero-turn.jpg" data-cap="Commercial zero-turn mowers"><img src="images/equip-zero-turn.jpg" alt="Commercial zero-turn mower on a lawn" loading="lazy" /></button><figcaption>Pro equipment</figcaption></figure>
+          <figure class="gal-item"><button type="button" class="gal-open" data-full="images/svc-fertilization.jpg" data-cap="Professional lawn treatment"><img src="images/svc-fertilization.jpg" alt="Technician applying lawn treatment to green turf" loading="lazy" /></button><figcaption>Lawn treatment</figcaption></figure>
+        </div>
+        <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+          <img id="lbImg" src="images/svc-mowing.jpg" alt="Enlarged gallery photo" />
+          <p class="lb-cap" id="lbCap"></p>
+          <div class="lb-btns">
+            <button type="button" id="lbPrev" aria-label="Previous photo">‹</button>
+            <button type="button" id="lbClose" aria-label="Close viewer">✕</button>
+            <button type="button" id="lbNext" aria-label="Next photo">›</button>
+          </div>
+        </dialog>
       </div>
     </section>
 
@@ -415,8 +446,8 @@
       <div class="container split">
         <div>
           <p class="eyebrow">Free Quote</p>
-          <h2 id="contact-title">Get Your Free Lawn Quote Today</h2>
-          <p>Fill the form and we’ll reply in <strong>under 2 business hours</strong> (Mon–Sat). Or just call — we answer.</p>
+          <h2 id="contact-title">Ready to Improve Your Outdoor Space?</h2>
+          <p>Contact Lakeside Outdoors Services today for professional lawn care and outdoor services in Watertown, NY. Fill the form and we’ll reply in <strong>under 2 business hours</strong> (Mon–Sat).</p>
           <div class="contact-cards">
             <a class="contact-card" href="tel:+13155550199"><span class="cc-icon">📞</span><span><strong>(315) 555-0199</strong><small>Call or text • 8am–6pm</small></span></a>
             <a class="contact-card" href="mailto:hello@lakesideoutdoorswatertown.com"><span class="cc-icon">✉️</span><span><strong>hello@lakesideoutdoorswatertown.com</strong><small>Email us anytime</small></span></a>
@@ -441,6 +472,11 @@
             </select>
           </div>
           <div><label for="f-msg">Tell us about your yard</label><textarea id="f-msg" name="message" rows="4" placeholder="Approx. lot size, address, gate access…"></textarea></div>
+          <div><label for="f-contact">Preferred contact method</label>
+            <select id="f-contact" name="contactMethod">
+              <option>Call</option><option>Text</option><option>Email</option>
+            </select>
+          </div>
           <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <button class="btn btn-primary btn-lg btn-block" type="submit">Send My Free Quote Request →</button>
           <p class="micro center">By submitting, you agree to be contacted about your request. No spam, ever.</p>
@@ -461,6 +497,7 @@
           <a href="#" aria-label="Google Business Profile">Google</a> •
           <a href="#" aria-label="Instagram">Instagram</a>
         </p>
+        <p><a class="btn btn-primary" href="#contact">Get a Free Quote</a></p>
       </div>
       <nav aria-label="Footer services"><p class="fh">Services</p><a href="#services">Lawn Mowing</a><a href="#services">Fertilization</a><a href="#services">Aeration</a><a href="#services">Cleanups</a><a href="#services">Mulch</a></nav>
       <nav aria-label="Footer company"><p class="fh">Company</p><a href="#why-us">Why Us</a><a href="#equipment">Equipment</a><a href="#work">Results</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Quote</a></nav>
