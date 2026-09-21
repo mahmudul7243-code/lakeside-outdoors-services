@@ -288,17 +288,13 @@ html,body{overflow-x:clip}
   body{padding-bottom:72px}
   .header-cta .btn-primary{padding:10px 14px;font-size:.9rem}
 }
-/* Scroll cue (hero mouse indicator) */
-.scroll-cue{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:opacity .4s ease-out}
+/* Scroll cue (ghostreach-style mono micro-text + bouncing arrow) */
+.scroll-cue{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:14px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 16px 10px 20px;background:rgba(11,36,23,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);text-decoration:none;transition:opacity .4s ease-out,border-color .3s ease-out}
+.scroll-cue:hover{border-color:rgba(190,242,100,.6)}
 .scroll-cue.hide{opacity:0;pointer-events:none}
-.mouse{width:28px;height:44px;border-radius:16px;position:relative;border:2px solid transparent;background:linear-gradient(rgba(15,47,30,.55),rgba(15,47,30,.55)) padding-box,linear-gradient(160deg,#bef264,#16a34a 55%,#38bdf8) border-box;box-shadow:0 0 18px rgba(190,242,100,.35)}
-.wheel{position:absolute;left:50%;top:8px;width:5px;height:9px;margin-left:-2.5px;border-radius:3px;background:linear-gradient(180deg,#ecfccb,#4ade80);box-shadow:0 0 10px rgba(190,242,100,.95);animation:wheel 2s ease-in-out infinite}
-@keyframes wheel{0%{opacity:1;transform:translateY(0)}60%{opacity:.15;transform:translateY(14px)}100%{opacity:0;transform:translateY(14px)}}
-.cue-text{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800;white-space:nowrap;background:linear-gradient(90deg,#bef264,#4ade80,#7dd3fc,#bef264);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:cueShine 3.5s linear infinite}
-@keyframes cueShine{to{background-position:220% center}}
-.cue-arrow{width:9px;height:9px;border-right:2px solid #bef264;border-bottom:2px solid #4ade80;transform:rotate(45deg);filter:drop-shadow(0 0 4px rgba(190,242,100,.8));animation:bob 2s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.9}50%{transform:rotate(45deg) translate(3px,3px);opacity:.45}}
-@media(max-width:640px){.scroll-cue{bottom:80px}}
+.cue-arrow-down{font-size:15px;line-height:1;color:var(--lime);animation:cueDrop 1.8s ease-in-out infinite}
+@keyframes cueDrop{0%,100%{transform:translateY(-3px);opacity:.95}50%{transform:translateY(3px);opacity:.45}}
+@media(max-width:640px){.scroll-cue{bottom:80px;font-size:9px;gap:10px}}
 
 /* Muse pointer glow (decorative follower; native cursor stays) */
 .muse-glow{position:fixed;top:0;left:0;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;pointer-events:none;z-index:65;background:radial-gradient(circle,rgba(190,242,100,.2),rgba(22,163,74,.08) 45%,transparent 70%);opacity:0;transition:opacity .4s ease-out}
@@ -308,4 +304,4 @@ html,body{overflow-x:clip}
 @keyframes sparkFloat{from{opacity:.9;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-90px) scale(.2)}}
 @media(pointer:coarse){.muse-glow,.muse-ring{display:none}}
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}.hero-dust{display:none}.svc-card:hover{transform:none}.svc-card:hover::before{transform:none}.reveal{opacity:1!important;transform:none!important}.muse-glow,.muse-ring,.muse-spark{display:none!important}.wheel,.cue-arrow,.cue-text{animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.hero-slide{animation:none!important}.hero-slide:first-child{opacity:1;transform:none}.hero-video{display:none!important}.hero-dust{display:none}.svc-card:hover{transform:none}.svc-card:hover::before{transform:none}.reveal{opacity:1!important;transform:none!important}.muse-glow,.muse-ring,.muse-spark{display:none!important}.cue-arrow-down{animation:none!important}}
